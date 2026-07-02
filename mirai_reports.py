@@ -1016,6 +1016,18 @@ def find_xml(search_dir):
     return candidates[-1]
 
 
+def read_status_date(xml_path):
+    """Lê a data de status do XML; se não existir, retorna a data atual."""
+    try:
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+        NS = "http://schemas.microsoft.com/project"
+        sd_s = root.findtext(f"{{{NS}}}StatusDate") or ""
+        return datetime.fromisoformat(sd_s[:10]) if sd_s else datetime.today()
+    except Exception:
+        return datetime.today()
+
+
 def next_sunday(ref_date):
     """Retorna o próximo domingo a partir de ref_date (inclusive se já for dom)."""
     days_ahead = (6 - ref_date.weekday()) % 7   # 6 = sunday
@@ -1092,15 +1104,7 @@ Nome sugerido para o arquivo XML:
             print(f"\n❌ Formato de data inválido: {args.data_status} (esperado: dd/mm/aaaa)")
             sys.exit(1)
     else:
-        # Tenta ler do XML
-        try:
-            tree = ET.parse(xml_path)
-            root = tree.getroot()
-            NS   = "http://schemas.microsoft.com/project"
-            sd_s = root.findtext(f"{{{NS}}}StatusDate") or ""
-            status_date = datetime.fromisoformat(sd_s[:10]) if sd_s else datetime.today()
-        except Exception:
-            status_date = datetime.today()
+        status_date = read_status_date(xml_path)
 
     sun = next_sunday(status_date)
     print(f"   Data status : {status_date.strftime('%d/%m/%Y')} (Sem. {status_date.isocalendar()[1]})")
