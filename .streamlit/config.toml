@@ -1,0 +1,6 @@
+[server]
+# O XML atual tem ~163 MB; 200 MB é o limite padrão prático para o Streamlit Community Cloud.
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
