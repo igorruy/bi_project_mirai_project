@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Report Gerencial — Projeto Mirai · 05/07/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600;700;900&family=Barlow+Condensed:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f5f6f8;color:#0d1117;font-family:'Barlow',sans-serif;font-size:13px;line-height:1.5}
+.page{max-width:1080px;margin:0 auto;padding:30px}
+.hdr{background:#fff;border:1px solid #e2e5eb;border-radius:8px;padding:20px 24px;
+     margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end}
+.eye{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;
+     text-transform:uppercase;margin-bottom:5px}
+.ttl{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;
+     text-transform:uppercase;line-height:1}
+.sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6e7a90;margin-top:4px}
+.kpis{display:grid;gap:10px;margin-bottom:14px}
+.kpi{background:#fff;border:1px solid #e2e5eb;border-radius:6px;padding:12px 14px;
+     position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.kpi.r::after{background:#E24B4A}.kpi.g::after{background:#639922}
+.kpi.b::after{background:#0077C8}.kpi.a::after{background:#EF9F27}.kpi.p::after{background:#6b3fa0}
+.kpi-lbl{font-size:9px;font-weight:600;color:#6e7a90;text-transform:uppercase;
+          letter-spacing:.1em;font-family:'IBM Plex Mono',monospace}
+.kpi-val{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;margin-top:3px;line-height:1}
+.kpi-sub{font-size:10px;color:#6e7a90;margin-top:2px;font-family:'IBM Plex Mono',monospace}
+.card{background:#fff;border:1px solid #e2e5eb;border-radius:6px;padding:14px 16px}
+.clbl{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+      letter-spacing:.1em;color:#6e7a90;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase;
+        letter-spacing:.06em;color:#6e7a90;padding:0 9px 8px;text-align:left;
+        border-bottom:2px solid #e2e5eb;font-weight:500}
+.tbl th.bl5{color:#c8002a!important}.tbl th.bl0{color:#9aa3b5!important}
+.tbl tr:hover td{background:#f9fafb}.tbl tr:last-child td{border-bottom:none}
+.g2{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-bottom:12px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:#6e7a90}
+.leg-sq{width:14px;height:3px;border-radius:2px;flex-shrink:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{font-size:10px;padding:3px 10px;border-radius:12px;border:1px solid #e2e5eb;
+      cursor:pointer;background:#fff;font-family:monospace;font-weight:600;transition:.12s}
+.chip.on{background:#c8002a;color:#fff;border-color:#c8002a}
+.footer{margin-top:14px;padding-top:12px;border-top:1px solid #e2e5eb;
+        display:flex;justify-content:space-between;font-size:10px;color:#6e7a90;font-family:monospace}
+
+.kpis{grid-template-columns:repeat(5,1fr)}
+</style>
+</head><body><div class="page">
+
+<div class="hdr">
+  <div>
+    <div class="eye" style="color:#0077C8">Sumitomo Rubber do Brasil · SAP S/4HANA · BL0 = Plano Original · BL5 = Plano de Recuperação</div>
+    <div class="ttl" style="color:#0d1117">Projeto <span style="color:#0077C8">Mirai</span></div>
+    <div class="sub">Report Gerencial · SPI vs BL5 · Dev Nº14 (BL0) e Nº15 (BL5) · Data Status: 05/07/2026 · Sem tarefas resumo</div>
+  </div>
+  <div style="text-align:right">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6e7a90">Semana 27 · 2026</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6e7a90;margin-top:2px">SRB_MIRAI_TP-0500_Cronograma_do_Projeto-07-07-2026.xml</div>
+    <div style="margin-top:8px;display:inline-block;font-size:10px;font-weight:700;
+         padding:4px 14px;border-radius:3px;background:#FAEEDA;color:#854F0B;border:1px solid #FAC775">⚠ Atenção vs BL5</div>
+  </div>
+</div>
+
+<div class="kpis">
+  <div class="kpi b"><div class="kpi-lbl">Trabalho BL0</div>
+    <div class="kpi-val">48K</div><div class="kpi-sub">48416h plano original</div></div>
+  <div class="kpi p"><div class="kpi-lbl">Trabalho BL5</div>
+    <div class="kpi-val">48K</div><div class="kpi-sub">48413h plano recuperação</div></div>
+  <div class="kpi g"><div class="kpi-lbl">EV realizado</div>
+    <div class="kpi-val">57%</div><div class="kpi-sub">27764h entregues</div></div>
+  <div class="kpi a">
+    <div class="kpi-lbl">SPI vs BL5</div>
+    <div class="kpi-val" style="color:#3B6D11">0.96</div>
+    <div class="kpi-sub">SV -1221h vs BL5</div></div>
+  <div class="kpi r"><div class="kpi-lbl">Críticos BL5</div>
+    <div class="kpi-val">7</div><div class="kpi-sub">SPI &lt; 0.95</div></div>
+</div>
+
+<div class="g2" style="margin-bottom:12px">
+  <div class="card">
+    <div class="clbl"><span class="cdot" style="background:#0077C8"></span>Curva S — BL0 Original · BL5 Recuperação · EV Realizado</div>
+    <div style="display:flex;gap:14px;margin-bottom:10px;flex-wrap:wrap">
+      <div class="leg"><span class="leg-sq" style="background:#c0c8d8"></span>BL0 Original</div>
+      <div class="leg"><span class="leg-sq" style="background:#0077C8"></span>BL5 Recuperação</div>
+      <div class="leg"><span class="leg-sq" style="background:#639922"></span>EV Realizado</div>
+    </div>
+    <div style="position:relative;height:210px"><canvas id="curvaS"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="clbl"><span class="cdot" style="background:#c8002a"></span>Desvio por Frente — Nº15 (BL5) e Nº14 (BL0)</div>
+    <div style="display:flex;gap:10px;margin-bottom:8px;font-size:10px;color:#6e7a90">
+      <span style="display:flex;align-items:center;gap:4px">
+        <span style="width:10px;height:10px;background:#c8002a;border-radius:2px;display:inline-block"></span>Dev BL5 (Nº15)
+      </span>
+      <span style="display:flex;align-items:center;gap:4px">
+        <span style="width:10px;height:10px;background:#9aa3b5;border-radius:2px;display:inline-block"></span>Dev BL0 (Nº14)
+      </span>
+    </div>
+    <div style="position:relative;height:220px"><canvas id="barDev"></canvas></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="clbl"><span class="cdot" style="background:#0077C8"></span>Avanço por Workstream — pior→melhor SPI vs BL5 · % = trabalho realizado / trabalho BL5</div>
+  <table class="tbl">
+    <thead><tr>
+      <th style="width:140px">Workstream</th>
+      <th style="min-width:170px">% Conclusão (BL5 / BL0)</th>
+      <th>EV / BL5</th>
+      <th class="bl5" style="text-align:right;width:90px">Dev BL5 (Nº15)</th>
+      <th class="bl0" style="text-align:right;width:90px">Dev BL0 (Nº14)</th>
+      <th style="text-align:center;width:65px">Atrasos</th>
+      <th style="text-align:center;width:85px">SPI BL5</th>
+      <th style="width:110px">Status</th>
+    </tr></thead>
+    <tbody>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">RH</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#c8002a;font-weight:600">26%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:26%;background:#c8002a;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>26%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:26%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">227h / 861h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">83h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">339h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#6e7a90">—</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FCEBEB;color:#A32D2D">0.7</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#A32D2D">🔴 CRÍTICO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Fiscal</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">41%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:41%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>41%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:41%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">1623h / 4001h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">527h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">595h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">5</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.8</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Projetos</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">71%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:71%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>71%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:71%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">130h / 183h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">24h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">24h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">1</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.84</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Logística</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">39%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:39%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>39%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:39%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">3778h / 9659h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">694h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">1344h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">34</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.88</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Qualidade</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">58%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:58%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>58%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:58%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">997h / 1711h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">138h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">175h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">5</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.88</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Controladoria</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">60%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:60%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>60%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:60%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">1581h / 2634h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">131h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">345h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">5</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.92</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="background:#fffbfb">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Comercial</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">75%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:75%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>75%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:75%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">3034h / 4027h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">268h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">274h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">17</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#FAEEDA;color:#854F0B">0.94</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#854F0B">⚠ ATENÇÃO</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Produção</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">48%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:48%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>48%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:48%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">3024h / 6331h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">361h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">555h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">35</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">0.95</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">↗ MONITORAR</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Contabilidade</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">62%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:62%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>62%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:62%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">2015h / 3249h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">86h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">367h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#6e7a90">—</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">0.98</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">↗ MONITORAR</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Suprimentos</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">72%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:72%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>72%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:72%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">5788h / 8035h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">314h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">430h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">38</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">1.0</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">✓ OK</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Interfaces</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">100%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:100%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>100%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:100%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">56h / 56h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">0h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">0h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#6e7a90">—</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">1.0</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">✓ OK</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Tesouraria</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">93%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:93%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>93%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:93%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">1001h / 1077h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">0h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">0h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#6e7a90">—</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">1.01</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">✓ OK</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Finanças</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#007a52;font-weight:600">76%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:76%;background:#007a52;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>76%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:76%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">2460h / 3257h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">106h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">115h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#c8002a;font-weight:600">1</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">1.07</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">✓ OK</td>
+        </tr>
+        <tr style="">
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:12px;font-weight:500">Manutenção</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;min-width:170px">
+            <div style="margin-bottom:4px">
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL5</span><span style="color:#b87a00;font-weight:600">61%</span>
+              </div>
+              <div style="height:6px;background:#e2e5eb;border-radius:3px;overflow:hidden">
+                <div style="height:100%;width:61%;background:#b87a00;border-radius:3px"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:9px;font-family:monospace;color:#6e7a90;margin-bottom:2px">
+                <span>BL0</span><span>61%</span>
+              </div>
+              <div style="height:4px;background:#e2e5eb;border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:61%;background:#9aa3b5;border-radius:2px"></div>
+              </div>
+            </div>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:11px;font-family:monospace">2048h / 3331h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:12px;font-family:monospace;font-weight:700;color:#c8002a">5h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:right;font-size:11px;font-family:monospace;color:#9aa3b5">5h</td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center"><span style="color:#6e7a90">—</span></td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;text-align:center">
+            <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;background:#EAF3DE;color:#3B6D11">1.17</span>
+          </td>
+          <td style="padding:8px 10px;border-bottom:1px solid #e8edf5;font-size:10px;font-weight:600;color:#3B6D11">✓ OK</td>
+        </tr></tbody>
+  </table>
+  <div style="margin-top:8px;font-size:10px;font-family:monospace;color:#6e7a90">
+    <span style="color:#c8002a">■ Dev BL5 (Nº15)</span> = campo Número15 do MS Project (desvio vs plano de recuperação) &nbsp;·&nbsp;
+    <span style="color:#9aa3b5">■ Dev BL0 (Nº14)</span> = campo Número14 do MS Project (desvio vs plano original) &nbsp;·&nbsp;
+    BL0 e BL5 são paralelas e independentes
+  </div>
+</div>
+
+<div class="footer">
+  <span>Fonte: SRB_MIRAI_TP-0500_Cronograma_do_Projeto-07-07-2026.xml · Nº14=Dev BL0 · Nº15=Dev BL5 · sem tarefas resumo · 05/07/2026</span>
+  <span style="color:#0077C8;font-weight:600">Projeto Mirai · Sumitomo Rubber do Brasil</span>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+  const gc='rgba(0,0,0,.04)', tc='#6e7a90';
+  new Chart(document.getElementById('curvaS'), {
+    type: 'line',
+    data: { labels: ["S44", "S45", "S46", "S47", "S48", "S49", "S50", "S51", "S52", "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19", "S20", "S21", "S22", "S23", "S24", "S25", "S26", "S27", "S28", "S29", "S30", "S31", "S32", "S33", "S34", "S35", "S36", "S37", "S38", "S39", "S40", "S41", "S42", "S43", "S44", "S45", "S46", "S47", "S48", "S49", "S50", "S51"], datasets: [
+      { label:'BL0', data:[289.8, 636.1, 897.6, 1147.6, 1495.7, 2165.9, 3206.7, 4388.0, 4725.1, 4886.5, 5581.9, 6063.7, 6254.4, 6311.8, 6627.4, 7262.1, 7649.9, 7959.7, 8410.3, 8852.8, 9202.0, 10278.1, 11052.2, 11987.8, 12991.3, 13936.0, 14813.5, 15710.8, 17188.1, 19456.3, 22134.4, 24833.2, 27714.5, 30094.5, 31855.7, 33290.1, 34820.7, 36928.2, 38568.3, 39890.6, 40856.7, 41563.4, 42742.8, 43413.1, 44112.1, 44429.4, 45325.6, 45464.8, 46130.3, 46480.3, 46683.7, 47362.2, 47418.2, 47474.2, 47530.2, 47586.2, 48147.7, 48354.7, 48414.7, 48415.7], borderColor:'#c0c8d8', borderDash:[2,3], borderWidth:1.5, fill:false, tension:.4, pointRadius:0 },
+      { label:'BL5', data:[289.8, 636.1, 897.6, 1147.6, 1495.7, 2165.9, 3206.7, 4388.0, 4725.1, 4886.5, 5581.9, 6063.7, 6254.4, 6311.8, 6627.4, 7262.1, 7649.9, 7959.7, 8410.3, 8852.8, 9202.0, 10278.1, 11052.2, 11960.4, 12922.6, 13833.8, 14677.8, 15560.8, 16922.2, 18552.4, 19864.5, 21073.3, 22547.8, 24423.8, 26828.6, 28984.4, 31140.8, 33879.4, 36095.5, 37976.2, 39277.1, 40314.6, 41821.1, 42775.5, 43706.6, 44159.1, 45170.3, 45378.6, 46078.2, 46450.3, 46674.6, 47359.4, 47415.4, 47471.4, 47527.4, 47583.4, 48144.9, 48351.9, 48411.9, 48412.9], borderColor:'#0077C8', backgroundColor:'rgba(0,119,200,.07)', borderWidth:2.5, fill:true, tension:.4, pointRadius:0 },
+      { label:'EV',  data:[0, 636.1, 774.1, 1050.1, 1403.6, 1938.5, 2882.5, 4189.0, 4565.0, 4565.0, 5449.0, 6015.0, 6231.0, 6299.0, 6392.0, 6900.0, 7147.2, 7746.2, 8204.4, 8548.5, 8990.7, 9925.0, 10541.1, 11197.5, 11942.4, 12869.8, 13874.3, 15145.7, 16326.4, 17528.2, 18489.8, 19083.7, 19920.7, 20928.0, 22678.2, 27763.5, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],  borderColor:'#639922', borderDash:[5,4], borderWidth:2.5, fill:false, tension:.4, pointRadius:3, pointBackgroundColor:'#639922', spanGaps:false }
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false}, tooltip:{ mode:'index', intersect:false,
+        callbacks:{ label: c => ` ${c.dataset.label}: ${c.parsed.y?.toLocaleString('pt-BR')}h` } } },
+      scales: {
+        x: { grid:{color:gc}, ticks:{color:tc, font:{size:9}, maxRotation:0, autoSkip:true, maxTicksLimit:20} },
+        y: { grid:{color:gc}, ticks:{color:tc, font:{size:9}, callback: v => v>=1000 ? Math.round(v/1000)+'Kh' : v+'h' }, beginAtZero:true }
+      }
+    }
+  });
+  new Chart(document.getElementById('barDev'), {
+    type: 'bar',
+    data: { labels: ["Log\u00edstica", "Fiscal", "Produ\u00e7\u00e3o", "Suprimentos", "Comercial", "Qualidade", "Controladoria", "Finan\u00e7as", "Contabilidade", "RH", "Projetos", "Manuten\u00e7\u00e3o"], datasets: [
+      { label:'Dev BL5 (Nº15)', data:[694.2, 527.5, 361.4, 313.8, 267.9, 138.5, 131.3, 105.9, 86.4, 83.0, 24.0, 4.7], backgroundColor:'rgba(200,0,42,.80)', borderRadius:3, barPercentage:.65 },
+      { label:'Dev BL0 (Nº14)', data:[1343.8, 594.7, 555.0, 430.5, 273.6, 174.9, 344.6, 115.0, 367.2, 339.0, 24.0, 4.7], backgroundColor:'rgba(154,163,181,.55)', borderRadius:3, barPercentage:.65 }
+    ]},
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false}, tooltip:{ callbacks:{ label: c => ` ${c.dataset.label}: ${c.parsed.y}h` } } },
+      scales: {
+        x: { grid:{display:false}, ticks:{color:tc, font:{size:8}, maxRotation:35} },
+        y: { grid:{color:gc}, ticks:{color:tc, font:{size:8}, callback: v => v+'h' }, beginAtZero:true }
+      }
+    }
+  });
+})();
+</script>
+</body></html>
